@@ -1,0 +1,26 @@
+{
+  "name": "email",
+  "version": "1.0.0",
+  "description": "email using nodemailer example",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamwaswa/email.git"
+  },
+  "author": "iamwaswa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamwaswa/email/issues"
+  },
+  "homepage": "https://github.com/iamwaswa/email#readme",
+  "dependencies": {
+    "nodemailer": "6.4.5",
+    "googleapis": "48.0.0",
+    "firebase-functions": "3.3.0",
+    "react": "16.13.0",
+    "react-dom": "16.13.0",
+    "@material-ui/core": "4.9.5"
+  },
+  "devDependencies": {
+    "@types/nodemailer": "4.6.0"
+  }
+}

@@ -1,9 +1,12 @@
-import * as nodemailer from 'nodemailer';
 import * as Mail from 'nodemailer/lib/mailer';
-import { google } from 'googleapis';
 import * as functions from 'firebase-functions';
-import { handleResponse } from './../../Global/Functions';
-import { ResponseStatusEnum, BasicResponse, CustomObject } from '../../Global/Types';
+import * as nodemailer from 'nodemailer';
+
+import { google } from 'googleapis';
+
+type CustomObject = {
+  [key: string]: any,
+};
 
 type CallData = {
   from: Mail.Address,
@@ -15,12 +18,24 @@ type CallData = {
   attachments?: CustomObject[], 
 };
 
-export default async (
-  data: CallData,
-  context: functions.https.CallableContext
-): Promise<BasicResponse> => {
+enum ResponseStatusEnum {
+  SUCCESS,
+  FAILURE
+}
+
+type BasicResponse = {
+  message: string;
+  status: ResponseStatusEnum;
+};
+
+/**
+ * functions.config() contains environment variables
+ * that should not be pushed to production
+ */
+
+export default async (data: CallData): Promise<BasicResponse> => {
   try {
-    console.log(`Sending group email...`);
+    console.log(`Sending email...`);
 
     const OAuth2 = google.auth.OAuth2;
     const clientId = functions.config().client.id;
